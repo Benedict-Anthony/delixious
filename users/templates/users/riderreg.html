@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include "navbar.html" %}
+
+<section class="container mx-auto w-screen h-screen flex flex-col justify-centre items-centre mt-8 menu px-3 md:flex-row space-y-8 md:space-x-8">
+    
+    <div class="form flex flex-col w-full md:w-96 mx-auto justify-centre items-centre">
+    
+        <form action="" class="bg-gray-600 py-6 px-4 w-full rounded-md space-y-6" id="form">
+            {{form.errors}}
+            <div class="flex flex-col w-full input">
+                <label for="phone" class="text-white mb-2">First name</label>
+                {{form.first_name}}
+            </div>
+
+            <div class="flex flex-col w-full input">
+                <label for="phone" class="text-white mb-2">Last name</label>
+                {{form.last_name}}
+            </div>
+
+            <div class="flex flex-col w-full input">
+                <label for="phone" class="text-white mb-2">phone</label>
+                {{form.contact}}
+            </div>
+
+            <div class="flex justify-between items-centre w-full input">
+                <label for="phone" class="text-white mb-2">Gender</label>
+                {{form.gender |title}}
+            </div>
+
+            <div class="flex justify-between items-centre w-full input">
+                <label for="phone" class="text-white mb-2">Status</label>
+                {{form.status |title}}
+            </div>
+
+
+            <div class="flex justify-between items-centre w-full input">
+                <label for="phone" class="text-white mb-2">Own a bike</label>
+                {{form.own_a_bike}}
+            </div>
+
+            <div class="flex flex-col w-full input">
+                <label for="phone" class="text-white mb-2">Address</label>
+                {{form.address}}
+            </div>
+
+            <div class="flex flex-col w-full input">
+                <label for="phone" class="text-white mb-2">Image</label>
+                {{form.image}}
+            </div>
+
+
+            <input type="submit" value="Submit" class="bg-white text-black py-2 text-xl px-3 rounded-sm hover:bg-orange" id="submit">
+
+        </form>
+        
+    </div>
+
+
+
+</section>
+
+{% endblock content %}

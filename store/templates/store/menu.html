@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include "navbar.html" %}
+
+
+<section class="container mx-auto mt-8 menu px-3 pb-3">
+    <div class="flex flex-col flex-wrap space-y-4 justify-between items-center mt-8 md:flex-row">
+        {% for product in products %}
+
+            {% include "./shared/items.html" %}
+        
+        {% endfor %}
+    </div>
+
+   <div class="flex justify-center items-center space-x-3">
+         {% if products.has_previous %}
+                 <a href="?page={{products.previous_page_number}}" class="text-white bg-black py2 px-3 rounded-sm drop-shadow-lg hover:bg-white hover:text-black hover:border-4"> <i class="fas fa-chevron-left text-orange"></i> Prev</a>
+        {% endif %}
+
+        {% if products.has_next %}
+            <a href="?page={{products.next_page_number}}" class="text-white bg-black py2 px-3 rounded-sm drop-shadow-lg hover:bg-white hover:text-black hover:border-4">Next <i class="fas fa-chevron-right text-orange"></i></a>
+        {% endif %}
+    </div>
+</section>
+{% include "footer.html" %}
+{% endblock content %}

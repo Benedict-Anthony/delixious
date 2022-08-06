@@ -1,0 +1,20 @@
+<article class="w-full border-2 md:w-80 cartItem">
+    <img src="{{product.imageURL}}" class="w-full h-52" alt="">
+    <p class="text-black text-md px-3">{{product.description|capfirst}}</p>
+    <div class="flex justify-between items-center px-3">
+        <h2 class="text-black font-bold text-xl">{{product.name |title}}</h2>
+        <div class="">
+            {% if product.discount is not None %}
+                <p class="text-orange text-md">N{{product.discount}}</p>
+                <strike class="text-sm text-light">N{{product.price}}</strike>
+
+            {% else %}
+                <p class="text-orange text-md">N{{product.price}}</p>
+
+            {% endif %}
+            
+        </div>
+    </div>
+    <button class="w-full bg-black text-white text-xl py-2 rounded-sm mt-3 hover:border-2 hover:bg-white hover:text-black update-btn" data-id="{{product.id}}" data-image={{product.imageURL}} data-action="increase" data-name={{product.name}} data-price={{product.price}}> <i class="fas fa-shopping-cart""></i> Add to cart</button>
+
+</article>

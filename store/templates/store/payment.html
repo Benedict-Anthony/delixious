@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+{% include "navbar.html" %}
+<section class="container mx-auto mt-8 pt-3 flex flex-col h-screen-w-fulll justify-center items-be text-center px-3">
+  <div id="payment-failed" class="hidden">
+    Uh-oh. Please try again, or contact support if you're encountering difficulties making payment.
+  </div>
+  <br>
+  <form class="flex flex-col justify-between items-center space-y-3 md:flex-row">
+  <div class="flex flex-col space-y-3">
+    <div class="text-center text-black text-2xl mt-4">Customer Info:</div>
+    <div class="flex items-center">
+      <h3 class="text-black text-xl"> 
+        <span class="text-light text-xl"> Name:</span> 
+         {{customer}}</h3>
+    </div>
+    
+        <div class="flex items-center">
+          <h3 class="text-black text-xl"> 
+            <span class="text-light text-xl"> Email:</span> 
+             {{email}}
+          </div>
+         </h3>
+
+
+          <div class="flex items-center">
+            <h3 class="text-black text-xl"> 
+              <span class="text-light text-xl"> Name:</span> 
+              +234 {{customer.contact}}</h3>
+          </div>
+        </div>
+
+  </div>
+    
+
+<div class="">
+  <div class="mt-8">
+    <div class="text-center text-black text-2xl">Your Order Details</div>
+    
+      {% for item in orderedItems %}
+      <p class="text-md md:text-2xl text-left my-2">{{item}} {{item.total_amout}} ({{item.quantity}})</p>
+      
+      {% endfor %}
+
+    
+
+    <h3 class="text-black text-md mt-3 ">
+      Total <span class="text-orange font-semibold">₦{{sum}}</span>
+    </h3>
+  </div>
+  <button type="button" class="start-payment-button py-2 px-3 border-2 bg-white rounded-sm hover:bg-orange text-xl text-black font-semibold" id="start-payment-button">Pay Now</button>
+</form>
+<div id="payment-success" class="text-md text-light mt-4">
+  Thank you for your continious patronage! Enjoy Your orders 
+</div>
+<div id="payment-pending" class="hidden">
+  Verifying...Setting up your cruise🚢
+</div>
+</div>
+</section>
+
+
+<script>
+
+const startPaymentBtn = document.getElementById("start-payment-button")
+  function makePayment() {
+    FlutterwaveCheckout({
+      public_key: "{{publicKey}}",
+      tx_ref: "titanic-48981487343MDI0NzMx",
+      amount: {{sum}},
+      currency: "NGN",
+      payment_options: "card, mobilemoneyghana, ussd",
+      redirect_url: "{% url 'store:success' %}",
+      callback: function(payment) {
+        // Send AJAX verification request to backend
+        verifyTransactionOnBackend(payment.id);
+      },
+      onclose: function(incomplete) {
+        if (incomplete || window.verified === false) {
+          document.querySelector("#payment-failed").style.display = 'block';
+        } else {
+          document.querySelector("form").style.display = 'none';
+          if (window.verified == true) {
+            document.querySelector("#payment-success").style.display = 'block';
+          } else {
+            document.querySelector("#payment-pending").style.display = 'block';
+          }
+        }
+      },
+      meta: {
+        consumer_id: 23,
+        consumer_mac: "92a3-912ba-1192a",
+      },
+      customer: {
+        email: "{{email}}",
+        phone_number: "{{customer.contact}}",
+        name: "{{customer}}",
+      },
+      customizations: {
+        title: "Yummy kicthen",
+        description: "Payment for order items from Yummy kicthen",
+        logo: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Fyummy-face-chef-character-logo-design-223603035.jpg&imgrefurl=https%3A%2F%2Fwww.dreamstime.com%2Fyummy-face-chef-character-logo-design-image223603035&tbnid=8-n56fApaD2TFM&vet=12ahUKEwilxsn8mrL5AhUJhM4BHdpoCdQQMygDegUIARDGAQ..i&docid=GHiL9N4JHtVSUM&w=800&h=800&q=yummy%20logo&hl=en&ved=2ahUKEwilxsn8mrL5AhUJhM4BHdpoCdQQMygDegUIARDGAQ",
+    },
+}
+);
+  }
+
+  function verifyTransactionOnBackend(transactionId) {
+    // Let's just pretend the request was successful
+    setTimeout(function() {
+      window.verified = true;
+    }, 200);
+}
+
+
+startPaymentBtn.addEventListener("click", () => {
+  makePayment()
+})
+</script>
+
+  {% endblock content %}

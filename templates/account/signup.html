@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<section class="w-screen h-screen flex items-center justify-center px-3">
+    <div class="w-full mx-auto flex flex-col justify-center items-center bg-gray-400 rounded-md md:w-96 px-2 py-3">
+                    
+        {% get_providers as socialaccount_providers %}
+
+        <form class="login form-signin" method="POST" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <button class="primaryAction px-3 py-2 bg-white mt-4 rounded-sm font-semibold hover:bg-orange" type="submit">Sign Up</button>
+        </form>
+
+        <div class="socialaccount_ballot">
+        <p class="text-center mt-3">Already have an account?<a href="{{ login_url }}"> Sign in</a></p>
+
+
+        </div>
+
+    {% get_providers as socialaccount_providers %}
+
+    {% for provider in socialaccount_providers %}
+    {% if provider.id == "openid" %}
+    {% for brand in provider.get_brands %}
+    <div>
+      <a title="{{brand.name}}" 
+         class="socialaccount_provider {{provider.id}} {{brand.id}}" 
+         href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
+         >{{brand.name}}</a>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="flex w-full">
+      <a title="{{provider.name}}" class="socialaccount_provider p-3 bg-gray-200 mt-4 w-full text-center text-xl text-black rounded-md hover:bg-white hover:text-black md:text-2xl {{provider.id}}" 
+         href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">{{provider.name}}</a>
+    </div>
+    {% endfor %}
+
+</div>
+    </section>
+
+{% endblock %}
+
+
+

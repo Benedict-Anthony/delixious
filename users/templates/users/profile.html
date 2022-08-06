@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% include "navbar.html" %}
+<section class="container mx-auto mt-8 pt-8">
+    <div class="mt-8 flex flex-col justify-center items-center space-y-4">
+
+        <h1 class="text-black font-semibold">Name: {{user.customer}}</h1>
+        <p class"text-black">Contact: +234 {{user.customer.contact}}</p>
+        <p class"text-black">Email: {{user.email}}</p>
+        
+        <a href="{% url 'customer' %}" class="text-white bg-light py-2 px-3 rounded-md hover:bg-orange">update Profile</a>
+    </div>
+
+    <div class="mt-8 pt-8 flex flex-col justify-center items-center space-y-4">
+        <a href="{%url "store:menu"%}" class="bg-black text-white text-xl py-2 px-2 rounded-sm mt-3 hover:border-2 hover:bg-white hover:text-black">Start Shopping <i class="fas fa-shopping-basket hover:text-orange"></i></a>
+
+    </div>
+</section>
+
+{% endblock content %}

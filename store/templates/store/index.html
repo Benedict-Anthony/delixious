@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+
+    {% include "navbar.html" %}
+
+   <section class="showcase flex justify-center items-center flex-col text-center" id="home">
+        <h3 class="font-bold text-2xl md:text-5xl py-5"> <span class="text-orange">Fresh</span> and <span class="text-orange">Organic</span> product for You</h3>
+        <p class="text-xl">Coming right to your door step at the click of a button </p>
+        <a href=" {% url 'store:menu' %} " class="text-center text-md mt-4 py-2 px-1 bg-gray-400 rounded-md hover:bg-light hover:text-white md:text-xl text-black">Shop Now</a>
+   </section>
+
+
+   <section class="container mx-auto flex flex-col justify-between items-center flex-wrap mt-4 space-y-4 px-3 md:flex-row" id="features">
+
+    <article class="w-full py-4 px-3 text-center flex flex-col justify-center items-center drop-shadow-lg md:w-80 card">
+        <img src="{% static 'images/feature-img-1.png' %}"  class="h-52" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-2xl font-bold">Fresh and Organic</h2>
+            <p class="text-md">Available in all kinds of categories and all geared towards a healthy living </p>
+        </div>
+    </article>
+    <article class="w-full py-4 px-3 text-center flex flex-col justify-center items-center drop-shadow-lg md:w-80 card">
+        <img src="{% static 'images/feature-img-2.png' %}"  class="h-52" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-2xl font-bold">Quick delivery</h2>
+            <p class="text-md">Responding to the customer and not getting the stomach waiting </p>
+        </div>
+    </article>
+    <article class="w-full py-4 px-3 text-center flex flex-col justify-center items-center drop-shadow-lg md:w-80 card">
+        <img src="{% static 'images/feature-img-3.png' %}"  class="h-52" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-2xl font-bold">Easy Payment</h2>
+            <p class="text-md">Providing the best available payment method and the save our customer the stress</p>
+        </div>
+    </article>
+   </section>
+
+
+<section class="container mx-auto px-3  mt-4 " id="products">
+
+    <h3 class="text-center text-2xl font-semibold px-3 py-2 mx-auto mt-3 md:text-left">
+        Products we can help you with.... </h3>
+
+<div class=" flex flex-col justify-center items-center  space-y-2 space-x-4  mt-3 md:flex-row">
+    <article class="w-full py-4 px-3 text-center flex flex-col justify-center items-center drop-shadow-lg md:w-1/4 card">
+        <img src="{% static 'images/cat-4.png' %}"  class="h-52" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-xl font-bold">Fresh Cooking item</h2>
+        </div>
+    </article>
+    
+    
+    <article class="w-full py-4 px-3 text-center flex flex-col justify-center items-center drop-shadow-lg md:w-1/4 card">
+        <img src="{% static 'images/cook.jpg' %}"  class="h-52" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-xl font-bold">Per boiled Item</h2>
+        </div>
+    </article>
+    
+    <article class="w-full py-4 px-3 text-center flex flex-col justify-center items-center drop-shadow-lg md:w-1/4 card">
+        <img src="{% static 'images/home-img-2.png' %}"  class="h-52" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-xl font-bold">Ready for serving</h2>
+        </div>
+    </article>
+    
+    <article class="w-full py-4 px-3 text-center flex flex-col justify-center items-center drop-shadow-lg md:w-1/4 card">
+        <img src="{% static 'images/cat-1.png' %}"  class="h-52" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-xl font-bold">Fresh Fruits</h2>
+        </div>
+    </article>
+</div>
+</section>
+
+<section class="container mx-auto px-3  mt-4 " id="categories">
+
+    <h3 class="text-center text-2xl font-semibold px-3 py-2 mx-auto mt-3 md:text-left">
+        Our Products categories </h3>
+
+<div class=" flex flex-col flex-wrap justify-center items-center  space-y-5 space-x-4  mt-3 md:flex-row">
+    <article class="w-3/4 text-center flex justify-center items-center flex-col drop-shadow-lg md:w-1/6 py-3 px-2 bg-gray-100 rounded-md smcard">
+        <img src="{% static 'images/cat-1.png' %}"  class="" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-xl font-bold">Vegetables</h2>
+        </div>
+    </article>
+
+    
+     <article class="w-3/4 flex justify-center items-center flex-col  py-3 px-2 bg-gray-100 rounded-md drop-shadow-lg md:w-1/6 smcard">
+        <img src="{% static 'images/cat-3.png' %}"  class="" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-xl font-bold">Diary Products</h2>
+        </div>
+    </article>
+    
+    <article class="w-3/4 flex justify-center items-center flex-col  py-3 px-2 bg-gray-100 rounded-md drop-shadow-lg md:w-1/6 smcard">
+        <img src="{% static 'images/about-img.png' %}"  class="" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-xl font-bold">Chips</h2>
+        </div>
+    </article>
+
+    <article class="w-3/4 flex justify-center items-center flex-col  py-3 px-2 bg-gray-100 rounded-md drop-shadow-lg md:w-1/6 smcard">
+        <img src="{% static 'images/cat-4.png' %}"  class="" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-xl font-bold">Fresh Items</h2>
+        </div>
+    </article>
+
+    <article class="w-3/4 flex justify-center items-center flex-col  py-3 px-2 bg-gray-100 rounded-md drop-shadow-lg md:w-1/6 smcard">
+        <img src="{% static 'images/menu-2.jpg' %}"  class="" alt="">
+        <div class="text-center">
+            <h2 class="text-black text-xl font-bold">Junks</h2>
+        </div>
+    </article>
+  
+</div>
+</section>
+
+
+<section class="container mx-auto mt-5" id="review">
+    <h1 class="text-xl font-semibold text-center">SOME REVIEWS FROM OUR CUSTOMERS</h1>
+    <div class="flex flex-col justify-between items-center md:flex-row p-3 md:space-x-2 space-y-3">
+        <article class="flex flex-col justify-center items-center text-center w-full border-2 rounded-sm py-2 md:w-1/4">
+            <img src=" {% static 'images/review-1.jpg' %} " alt="" class="rounded-full w-28 h-28">
+            <h2 class="text-black text-md md:text-xl font-semibold">Benedicta Vannesa</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit sequi incidunt quam impedit quis optio odit mollitia excepturi culpa veritatis.</p>
+        </article>
+
+        <article class="flex flex-col justify-center items-center text-center w-full border-2 rounded-sm py-2 md:w-1/4">
+            <img src=" {% static 'images/review-2.jpg' %} " alt="" class="rounded-full w-28 h-28">
+            <h2 class="text-black text-md md:text-xl font-semibold">Benedicta Vannesa</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit sequi incidunt quam impedit quis optio odit mollitia excepturi culpa veritatis.</p>
+        </article>
+
+        <article class="flex flex-col justify-center items-center text-center w-full border-2 rounded-sm py-2 md:w-1/4">
+            <img src=" {% static 'images/review-3.jpg' %} " alt="" class="rounded-full w-28  h-28">
+            <h2 class="text-black text-md md:text-xl font-semibold">Benedicta Vannesa</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit sequi incidunt quam impedit quis optio odit mollitia excepturi culpa veritatis.</p>
+        </article>
+
+    </div>
+</section>
+
+<section class="container mx-auto mt-5 px-3 pb-5">
+    <h1 class="text-xl font-semibold text-center">FREQUENTLY ASKED QUESTIONS</h1>
+    <div class="mx-auto w-full md:w-1/2 mt-5">
+        <div class="accordion flex flex-col my-2 items start w-full">
+            <div class="flex justify-between items-center pointer accordion-toggler">
+                <h2 class="text-xl md:text-2xl text-black pointer">Who we are</h2>
+                <i class="fas fa-plus text-orange pointer text-xl "></i>
+            </div>
+            <div class="accordion-content close text-black text-left">
+               <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore dolorem impedit voluptas saepe, consequatur, explicabo vel, repudiandae ab tempore quos dolores eligendi rem unde temporibus cum voluptatem! Aut, maiores aliquam?
+               </p>
+            </div>
+        </div>
+
+
+        <div class="accordion flex flex-col my-2 items start w-full">
+            <div class="flex justify-between items-center pointer accordion-toggler">
+                <h2 class="text-xl md:text-2xl  text-black pointer">What we do</h2>
+                <i class="fas fa-plus text-orange pointer text-xl "></i>
+            </div>
+            <div class="accordion-content close text-black text-left">
+               <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore dolorem impedit voluptas saepe, consequatur, explicabo vel, repudiandae ab tempore quos dolores eligendi rem unde temporibus cum voluptatem! Aut, maiores aliquam?
+               </p>
+            </div>
+        </div>
+
+
+        <div class="accordion flex flex-col my-2 items start w-full">
+            <div class="flex justify-between items-center pointer accordion-toggler">
+                <h2 class="text-xl md:text-2xl text-black pointer">Our policy</h2>
+                <i class="fas fa-plus text-orange pointer text-xl "></i>
+            </div>
+            <div class="accordion-content close text-black text-left">
+               <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore dolorem impedit voluptas saepe, consequatur, explicabo vel, repudiandae ab tempore quos dolores eligendi rem unde temporibus cum voluptatem! Aut, maiores aliquam?
+               </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include "footer.html" %}
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<section class="mx-auto container flex flex-col justify-center items-center h-screen text-center">
+    <p class="text-black text-xl">Your payment was successful! you will recieve an email shortly. <br> Thanks</p>
+
+    <a href="{% url 'store:home' %}" class="text-xl bg-orange py-2 px-3 font-semibold border-2 block mt-3 rounded-sm hover:bg-white">OK</a>
+</section>
+
+{% endblock content %}

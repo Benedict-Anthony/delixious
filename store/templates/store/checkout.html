@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include "navbar.html" %}
+
+<section class="container mx-auto w-screen h-screen flex flex-col justify-between items-centre mt-8 menu px-3 md:flex-row space-y-8 md:space-x-8">
+    <div class="form flex flex-col w-full md:w-1/2">
+        <h3 class="text-xl text-red-700 md:text-2xl pb-1 hidden" id="warning">Please enter all fields</h3>
+        <form action="" class="bg-light py-6 px-4 w-full rounded-md space-y-6" id="form">
+    <div class="space-y-5">
+        {% comment %} authenticated user form {% endcomment %}
+   <div id="not-login-form">
+    <div class="flex flex-col justify-between items-center md:flex-row md:space-x-4" > 
+        <div class="flex flex-col w-full md:w-1/2">
+            <label for="name" class="text-white">First Name</label>
+            <input type="text" class="py-2 rounded-sm outline-0 px-1" name="firstname">
+        </div>
+        
+        
+         <div class="flex flex-col w-full md:w-1/2">
+            <label for="lasttname" class="text-white">Last Name</label>
+            <input type="text" class="py-2 rounded-sm outline-0 px-1"  name="lastname">
+        </div>
+        
+    </div>
+
+    <div class="flex flex-col justify-between items-center md:flex-row md:space-x-4">
+        <div class="flex flex-col w-full md:w-1/2">
+            <label for="email" class="text-white">Email</label>
+            <input type="email" class="py-2 rounded-sm outline-0 px-1" name="email">
+        </div>
+        
+        
+         <div class="flex flex-col w-full md:w-1/2">
+            <label for="phone" class="text-white">Contact</label>
+            <input type="number" class="py-2 rounded-sm outline-0 px-1"  name="contact">
+        </div>
+        
+    </div>
+   </div>
+      
+       
+
+        {% comment %} shipping info form {% endcomment %}
+        <div class="flex flex-col justify-between items-center md:flex-row md:space-x-4" id="shipping-info">
+            <div class="flex flex-col w-full md:w-1/2">
+                <label for="state" class="text-white">State</label>
+                <input type="text" class="py-2 rounded-sm outline-0 px-1" name="state">
+            </div>
+            
+            
+             <div class="flex flex-col w-full md:w-1/2">
+                <label for="city" class="text-white">city</label>
+                <input type="text" class="py-2 rounded-sm outline-0 px-1" name="city">
+            </div>
+            
+        </div>
+
+        <div class="flex flex-col justify-between items-center md:flex-row md:space-x-4">
+            <div class="flex flex-col w-full md:w-1/2">
+                <label for="town" class="text-white">town</label>
+                <input type="text" class="py-2 rounded-sm outline-0 px-1" name="town">
+            </div>
+            
+            
+             <div class="flex flex-col w-full md:w-1/2">
+                <label for="street" class="text-white">street</label>
+                <input type="text" class="py-2 rounded-sm outline-0 px-1" name="street">
+            </div>
+            
+        </div>
+      
+        <div class="flex flex-col w-full">
+            <label for="description" class="text-white">Address Description</label>
+            <textarea class="resize-none py-2 rounded-sm outline-0 px-1 w-full" name="description"></textarea>
+
+        </div>
+    </div>
+
+            <input type="submit" value="Submit" class="bg-white text-black py-2 text-xl px-3 rounded-sm hover:bg-orange" id="submit">
+        </form>
+        <button type="submit" class="hidden bg-gray-600 text-white py-2 text-xl px-3 rounded-sm hover:bg-orange" id="make-payment"> Processing payment <i class="fas fa-chevron-right"></i></button>
+    </div>
+
+
+
+    <aside class="w-full md:w-1/2 space-y-4">
+        <div class="hidden py-2 px-3 bg-gray-400 md:block w-1/2 text-center rounded-md">
+            <a href="{% url 'store:menu' %}" class="text-xl text-gray-100"> <i class="fas fa-arrow-left"></i> Keep shopping</a>
+        </div>
+       
+        
+       <div class="" id="check-out-items-list">
+
+       </div>
+    
+
+    </aside>
+</section>
+{% comment %} {% include "footer.html" %} {% endcomment %}
+<script>
+    const user = "{{request.user}}"
+</script>
+{% endblock content %}

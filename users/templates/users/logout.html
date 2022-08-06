@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="h-screen w-screen flex flex-col items-center justify-center px-3 text-center">
+    <div class="w-full md:w-96 text-center flex flex-col items-center justify-center">
+        <h1 class="text-xl md:text-3xl font-semibold">You are now logged Out</h1>
+        <p class="mt-2 text-xl text-center "><a href=" {% url 'account_login' %} ">Login again</a></p>
+    </div>
+</section>
+{% endblock content %}
