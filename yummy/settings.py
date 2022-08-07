@@ -17,6 +17,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 import os
 import django_heroku
+from decouple import config
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -98,11 +100,11 @@ WSGI_APPLICATION = 'yummy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':config("DATABASE"),
-        'USER': config("USER"),
-        'HOST':  config("HOST"),
-        'PASSWORD': config("PASSWORD"),
-        'PORT': config("PORT"),
+        'USER': config("DB_USER"),
+        'NAME': config("DB_NAME"),
+        'HOST':  config("DB_HOST"),
+        'PASSWORD': config("DB_PASSWORD"),
+        'PORT': config("DB_PORT"),
     }
 }
 
@@ -203,7 +205,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 LOGIN_REQUIRED_URL = "account_login"
 
-from decouple import config
 
 CLOUDINARY_STORAGE = {
    "CLOUD_NAME":config("CLOUD_NAME"),
