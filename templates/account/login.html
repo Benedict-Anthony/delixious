@@ -7,17 +7,17 @@
 
 {% block content %}
 <section class="w-screen h-screen flex items-center justify-center px-3">
-    <div class="w-full mx-auto flex flex-col justify-center items-center bg-gray-400 rounded-md md:w-96 px-2 py-3">
+    <div class="w-full mx-auto flex flex-col justify-center items-center bg-gray-600 text-white rounded-md md:w-96 px-2 py-3">
                     
         {% get_providers as socialaccount_providers %}
-
+        <p class="text-md md:text-xl px-2 text-center" text-center">Welcome to yummy kicthen! Its great to have you.</p>
         <form class="login form-signin" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
         {{ form.as_ul }}
-        <button class="primaryAction px-3 py-2 bg-white mt-4 rounded-sm font-semibold hover:bg-orange" type="submit">Login</button>
+        <button class="primaryAction px-3 py-2 bg-white text-black mt-4 rounded-sm font-semibold hover:bg-orange" type="submit">Login</button>
         
     
-        <a class="button secondaryAction mt-3" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+        {% comment %} <a class="button secondaryAction mt-3" href="{% url 'account_reset_password' %}">Forgot Password?</a> {% endcomment %}
         </form>
 
         <div class="socialaccount_ballot">
@@ -25,7 +25,7 @@
         <ul class="socialaccount_providers">
             {% comment %} {% include "socialaccount/snippets/provider_list.html" with process="login" %} {% endcomment %}
         </ul>
-        <p class="text-center mt-3">Dont have an Accout? <a href="{{ signup_url }}">sign up</a></p>
+        <p class="text-center mt-3">Dont have an Accout? <a href="{{ signup_url }}" class="text-orange text-xl">sign up</a></p>
 
 
         </div>
@@ -45,7 +45,7 @@
     {% endfor %}
     {% endif %}
     <div class="flex w-full">
-      <a title="{{provider.name}}" class="socialaccount_provider p-3 bg-gray-200 mt-4 w-full text-center text-xl text-black rounded-md hover:bg-white hover:text-black md:text-2xl {{provider.id}}" 
+      <a title="{{provider.name}}" class="socialaccount_provider p-3 bg-orange mt-4 w-full text-center text-xl text-black rounded-md hover:bg-white hover:text-black md:text-2xl {{provider.id}}" 
          href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">{{provider.name}}</a>
     </div>
     {% endfor %}

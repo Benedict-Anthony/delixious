@@ -6,6 +6,7 @@ import json
 from django.core.paginator import Paginator
 from decouple import config
 from django.utils.text import slugify 
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
@@ -25,6 +26,8 @@ def menu(request):
     return render(request, "store/menu.html", context)
 
 
+
+@login_required
 def checkout(request):
     return render(request, "store/checkout.html")
 
@@ -34,7 +37,6 @@ def shippingFunc(orderDetails, customer, customerData):
     shippingInfo, created = ShippingInfo.objects.get_or_create(orderDetails=orderDetails, customer=customer, state=customerData.get("state"), city=customerData.get("city"), town=customerData.get("town"), street=customerData.get("street"), description=customerData.get("description"))
     shippingInfo.save()
     return shippingInfo
-
 
 
 
@@ -57,11 +59,13 @@ def update_cart(request):
            orderItems.shippingInfo = shippingInfo
            
            orderItems.save()
+        return JsonResponse(customer.id, safe=False)
+           
            
     else:
         customerData = data.get("customerInfo")
         customer, created = Customer.objects.get_or_create(first_name=customerData.get("firstName"),  last_name=customerData.get("lastName"), email=customerData.get("email"), contact=customerData.get("contact"))
-        
+        customer.save()
         
         orderDetails, created = OrderDetail.objects.get_or_create(customer=customer, completed=False)
         
@@ -75,8 +79,11 @@ def update_cart(request):
            orderItems.shippingInfo = shippingInfo
            
            orderItems.save()
-    customerID = customer.id
-    return JsonResponse(customerID, safe=False)
+        print(customer)
+        return JsonResponse(customer.id, safe=False)
+           
+    # customerID = customer.id
+    return JsonResponse("cart Items", safe=False)
 
 
 
@@ -114,5 +121,7 @@ def sucess(request):
         item.completed=True
         item.status="sent"
         item.transanction_id = slugify(f'{item.date} {item.id} {item.customer.id}')
+        
         item.save()
+        
     return render(request, "store/success.html")
